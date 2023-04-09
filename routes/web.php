@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\CompanyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Users Routes
 Route::resource('users', UserController::class);
+
+//Comapanies Routes 
+Route::resource('companies', CompanyController::class);
+

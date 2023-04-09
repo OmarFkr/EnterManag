@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CompanyController extends Controller
 {
     /**
     * Display a listing of the resource.
@@ -13,14 +13,14 @@ class UserController extends Controller
     */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(5);
+        $companies = Company::orderBy('id','desc')->paginate(5);
 
         return response()->json([
             'http response status codes' => '200',
-            'users' => $users,
+            'companies' => $companies,
         ]);
 
-        //return view('users.index', compact('users'));
+        //return view('companies.index', compact('companies'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
     */
     public function create()
     {
-        return view('users.create');
+        return view('companies.create');
     }
 
     /**
@@ -43,86 +43,83 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
         ]);
         
-        $user = User::create($request->post());
+        $company = Company::create($request->post());
 
         return response()->json([
             'http response status codes' => '200',
-            'user' => $user,
+            'company' => $company,
         ]);
-        //return redirect()->route('users.index')->with('success','User has been created successfully.');
+
+        //return redirect()->route('companies.index')->with('success','Company has been created successfully.');
     }
 
     /**
     * Display the specified resource.
     *
-    * @param  \App\User  $user
+    * @param  \App\company  $company
     * @return \Illuminate\Http\Response
     */
-    public function show(User $user)
+    public function show(Company $company)
     {
         return response()->json([
             'http response status codes' => '200',
-            'user' => $user,
+            'company' => $company,
         ]);
 
-        //return view('users.show',compact('user'));
+        //return view('companies.show',compact('company'));
     }
 
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\User  $user
+    * @param  \App\Company  $company
     * @return \Illuminate\Http\Response
     */
-    public function edit(User $user)
+    public function edit(Company $company)
     {
-        return view('users.edit',compact('user'));
+        return view('companies.edit',compact('company'));
     }
 
     /**
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  \App\User  $user
+    * @param  \App\company  $company
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Company $company)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
         ]);
         
-        $updatedUser = $user->fill($request->post())->save();
+        $updatedCompany = $company->fill($request->post())->save();
 
         return response()->json([
             'http response status codes' => '200',
-            'updatedUser' => $updatedUser,
+            'updatedCompany' => $updatedCompany,
         ]);
-        
-        //return redirect()->route('users.index')->with('success','User Has Been updated successfully');
+
+        //return redirect()->route('companies.index')->with('success','Company Has Been updated successfully');
     }
 
     /**
     * Remove the specified resource from storage.
     *
-    * @param  \App\User  $user
+    * @param  \App\Company  $company
     * @return \Illuminate\Http\Response
     */
-    public function destroy(User $user)
+    public function destroy(Company $company)
     {
-        $user->delete();
+        $company->delete();
 
         return response()->json([
             'http response status codes' => '200',
-            'deletedUser' => $user,
+            'deletedCompany' => $company,
         ]);
 
-        //return redirect()->route('users.index')->with('success','User has been deleted successfully');
+        //return redirect()->route('companies.index')->with('success','Company has been deleted successfully');
     }
 }
