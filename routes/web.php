@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,7 @@ Route::resource('users', UserController::class);
 
 //Comapanies Routes 
 Route::resource('companies', CompanyController::class);
+
+//Employees Routes
+Route::resource('employees', EmployeeController::class);
 

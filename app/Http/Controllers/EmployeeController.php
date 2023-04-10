@@ -1,23 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Company;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class EmployeeController extends Controller
 {
-    /**
+     /**
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
     */
     public function index()
     {
-        $companies = Company::orderBy('id','desc')->paginate(5);
+        $employees = Employee::orderBy('id','desc')->paginate(5);
 
         return response()->json([
             'http response status codes' => '200',
-            'companies' => $companies,
+            'employees' => $employees,
         ]);
         
         //return view('companies.index', compact('companies'));
@@ -45,11 +45,11 @@ class CompanyController extends Controller
             'name' => 'required',
         ]);
         
-        $company = Company::create($request->post());
+        $employee = Employee::create($request->post());
 
         return response()->json([
             'http response status codes' => '200',
-            'company' => $company,
+            'employee' => $employee,
         ]);
 
         //return redirect()->route('companies.index')->with('success','Company has been created successfully.');
@@ -58,14 +58,14 @@ class CompanyController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  \App\company  $company
+    * @param  \App\Employee  $employee
     * @return \Illuminate\Http\Response
     */
-    public function show(Company $company)
+    public function show(Employee $employee)
     {
         return response()->json([
             'http response status codes' => '200',
-            'company' => $company,
+            'employee' => $employee,
         ]);
 
         //return view('companies.show',compact('company'));
@@ -74,32 +74,32 @@ class CompanyController extends Controller
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\Company  $company
+    * @param  \App\Employee  $employee
     * @return \Illuminate\Http\Response
     */
-    public function edit(Company $company)
+    public function edit(Employee $employee)
     {
-        return view('companies.edit',compact('company'));
+        return view('employees.edit',compact('employee'));
     }
 
     /**
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  \App\company  $company
+    * @param  \App\Employee  $employee
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Employee $employee)
     {
         $request->validate([
             'name' => 'required',
         ]);
         
-        $updatedCompany = $company->fill($request->post())->save();
+        $updatedEmployee = $employee->fill($request->post())->save();
 
         return response()->json([
             'http response status codes' => '200',
-            'updatedCompany' => $updatedCompany,
+            'updatedEmployee' => $updatedEmployee,
         ]);
 
         //return redirect()->route('companies.index')->with('success','Company Has Been updated successfully');
@@ -108,16 +108,16 @@ class CompanyController extends Controller
     /**
     * Remove the specified resource from storage.
     *
-    * @param  \App\Company  $company
+    * @param  \App\Employee  $employee
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Company $company)
+    public function destroy(Employee $employee)
     {
-        $company->delete();
+        $employee->delete();
 
         return response()->json([
             'http response status codes' => '200',
-            'deletedCompany' => $company,
+            'deletedEmployee' => $employee,
         ]);
 
         //return redirect()->route('companies.index')->with('success','Company has been deleted successfully');
