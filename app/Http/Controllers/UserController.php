@@ -13,13 +13,18 @@ class UserController extends Controller
     */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(5);
+        //$users = User::orderBy('id','desc')->paginate(5);
 
-        return response()->json([
+        $users = User::select('name', 'email')->get();
+
+        /*return response()->json([
             'http response status codes' => '200',
             'users' => $users,
         ]);
+        */
 
+        return response()->json($users);
+        
         //return view('users.index', compact('users'));
     }
 
