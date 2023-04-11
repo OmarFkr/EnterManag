@@ -2,6 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import UsersLayout from '@/Layouts/UsersLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import User from '@/Components/Users-list.vue';
+import UserSingle from '@/Components/Users-single.vue';
 import axios from 'axios';
 import { onMounted } from 'vue';
 
@@ -25,6 +27,7 @@ onMounted(() => {
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
+        <User :users="users" ></User>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>
         </template>
